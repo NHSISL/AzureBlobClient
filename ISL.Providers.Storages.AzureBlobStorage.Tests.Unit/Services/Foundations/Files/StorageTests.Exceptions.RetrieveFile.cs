@@ -42,7 +42,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.RetrieveFileAsync(inputStream, inputFileName, inputContainer);
 
             StorageDependencyValidationException actualStorageDependencyValidationException =
-                await Assert.ThrowsAsync<StorageDependencyValidationException>(createFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageDependencyValidationException>(testCode: createFileTask.AsTask);
 
             // then
             actualStorageDependencyValidationException
@@ -90,7 +90,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.RetrieveFileAsync(inputStream, inputFileName, inputContainer);
 
             StorageDependencyException actualStorageDependencyException =
-                await Assert.ThrowsAsync<StorageDependencyException>(createFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageDependencyException>(testCode: createFileTask.AsTask);
 
             // then
             actualStorageDependencyException
@@ -138,7 +138,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.RetrieveFileAsync(inputStream, inputFileName, inputContainer);
 
             StorageServiceException actualStorageServiceException =
-                await Assert.ThrowsAsync<StorageServiceException>(createFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageServiceException>(testCode: createFileTask.AsTask);
 
             // then
             actualStorageServiceException

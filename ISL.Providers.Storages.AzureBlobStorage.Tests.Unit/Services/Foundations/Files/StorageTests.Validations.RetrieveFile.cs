@@ -8,10 +8,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
     public partial class StorageTests
     {
         [Theory]
-        [InlineData(null, null)]
-        [InlineData(null, "")]
-        [InlineData(null, " ")]
-        [MemberData(nameof(GetStreamWithLength))]
+        [MemberData(nameof(InvalidArgumentsStreamHasLength))]
         public async Task ShouldThrowValidationExceptionOnRetrieveIfArgumentsInvalidAsync(Stream invalidStream, string invalidText)
         {
             // given
@@ -45,7 +42,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.RetrieveFileAsync(invalidInputStream, invalidFileName, invalidContainer);
 
             StorageValidationException actualFileValidationException =
-                await Assert.ThrowsAsync<StorageValidationException>(retrieveFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageValidationException>(testCode: retrieveFileTask.AsTask);
 
             // then
             actualFileValidationException

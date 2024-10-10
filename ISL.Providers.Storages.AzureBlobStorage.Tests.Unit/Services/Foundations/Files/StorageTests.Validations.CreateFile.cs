@@ -8,10 +8,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
     public partial class StorageTests
     {
         [Theory]
-        [InlineData(null, null)]
-        [InlineData(null, "")]
-        [InlineData(null, " ")]
-        [MemberData(nameof(GetStreamLengthZero))]
+        [MemberData(nameof(InvalidArgumentsStreamLengthZero))]
         public async Task ShouldThrowValidationExceptionOnCreateIfArgumentsInvalidAsync(Stream invalidStream, string invalidText)
         {
             // given
@@ -45,7 +42,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.CreateFileAsync(invalidInputStream, invalidFileName, invalidContainer);
 
             StorageValidationException actualStorageValidationException =
-                await Assert.ThrowsAsync<StorageValidationException>(createFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageValidationException>(testCode: createFileTask.AsTask);
 
             // then
             actualStorageValidationException

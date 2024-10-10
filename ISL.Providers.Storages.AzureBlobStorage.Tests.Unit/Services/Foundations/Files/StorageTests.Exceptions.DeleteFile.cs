@@ -39,7 +39,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.DeleteFileAsync(inputFileName, inputContainer);
 
             StorageDependencyValidationException actualStorageDependencyValidationException =
-                await Assert.ThrowsAsync<StorageDependencyValidationException>(deleteFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageDependencyValidationException>(testCode: deleteFileTask.AsTask);
 
             // then
             actualStorageDependencyValidationException
@@ -85,7 +85,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.DeleteFileAsync(inputFileName, inputContainer);
 
             StorageDependencyException actualStorageDependencyException =
-                await Assert.ThrowsAsync<StorageDependencyException>(deleteFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageDependencyException>(testCode: deleteFileTask.AsTask);
 
             // then
             actualStorageDependencyException
@@ -131,7 +131,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.DeleteFileAsync(inputFileName, inputContainer);
 
             StorageServiceException actualStorageServiceException =
-                await Assert.ThrowsAsync<StorageServiceException>(deleteFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageServiceException>(testCode: deleteFileTask.AsTask);
 
             // then
             actualStorageServiceException

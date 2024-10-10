@@ -34,7 +34,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.ListFilesInContainerAsync(invalidContainer);
 
             StorageValidationException actualStorageValidationException =
-                await Assert.ThrowsAsync<StorageValidationException>(listFilesTask.AsTask);
+                await Assert.ThrowsAsync<StorageValidationException>(testCode: listFilesTask.AsTask);
 
             // then
             actualStorageValidationException

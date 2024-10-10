@@ -38,7 +38,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
                 this.storageService.DeleteFileAsync(invalidFileName, invalidContainer);
 
             StorageValidationException actualStorageValidationException =
-                await Assert.ThrowsAsync<StorageValidationException>(deleteFileTask.AsTask);
+                await Assert.ThrowsAsync<StorageValidationException>(testCode: deleteFileTask.AsTask);
 
             // then
             actualStorageValidationException

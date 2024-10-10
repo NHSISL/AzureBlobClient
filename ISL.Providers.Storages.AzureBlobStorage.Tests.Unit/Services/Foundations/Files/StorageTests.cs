@@ -47,7 +47,7 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
         public byte[] CreateRandomData()
         {
             string randomMessage = GetRandomString();
-            
+
             return Encoding.UTF8.GetBytes(randomMessage);
         }
 
@@ -61,22 +61,26 @@ namespace ISL.Providers.Storages.AzureBlobStorage.Tests.Unit.Services.Foundation
             public override long Length => 1;
         }
 
-        public static TheoryData<Stream, string> GetStreamLengthZero()
+        public static TheoryData<Stream, string> InvalidArgumentsStreamLengthZero()
         {
             Stream stream = new ZeroLengthStream();
 
             return new TheoryData<Stream, string>
             {
+                { null, null },
+                { stream, "" },
                 { stream, " " }
             };
         }
 
-        public static TheoryData<Stream, string> GetStreamWithLength()
+        public static TheoryData<Stream, string> InvalidArgumentsStreamHasLength()
         {
             Stream stream = new HasLengthStream();
 
             return new TheoryData<Stream, string>
             {
+                { null, null },
+                { stream, ""},
                 { stream, " " }
             };
         }
